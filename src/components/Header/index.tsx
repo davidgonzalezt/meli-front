@@ -1,9 +1,12 @@
-import React, { useState, FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, FormEvent, useEffect } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import "./Header.scss";
+
 
 const Header: React.FC = () => {
   const [query, setQuery] = useState<string>("");
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get("search") ?? "";
   const navigate = useNavigate();
 
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
@@ -11,17 +14,21 @@ const Header: React.FC = () => {
     navigate(`/items?search=${query}`, { replace: true });
   };
 
+  useEffect(() => {
+    setQuery(search);
+  }, [search]);
+
   return (
     <header role="banner" className="nav-header">
       <div className="nav-bounds">
         <div className="nav-logo-area">
-          <a
+          <Link
             className="nav-logo"
-            href="//www.mercadolibre.com.ar"
+            to="/"
             aria-label="Mercado Libre Argentina - Donde comprar y vender de todo"
           >
             Mercado Libre Argentina
-          </a>
+          </Link>
         </div>
         <div className="nav-search-area">
           <form className="nav-search" onSubmit={handleSearch}>
