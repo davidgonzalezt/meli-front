@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import "./ResultSearch.scss";
 import BreadCrumb from "../components/BreadCrumb";
 import ItemProduct from "../components/ItemProduct";
@@ -22,12 +23,19 @@ const ResultSearch: React.FC = () => {
   }, [search]);
 
   if (!searchResults) return null;
-  console.log(searchResults);
+
   return (
     <>
+      <Helmet>
+        <title>{search} | MercadoLibre 📦</title>
+        <meta
+          name="description"
+          content={`Envíos Gratis en el día ✓ Comprá ${search} en cuotas sin interés! Conocé nuestras increíbles ofertas y promociones en millones de productos.`}
+        />
+      </Helmet>
       <BreadCrumb categories={searchResults?.categories} />
       <div className="result-content">
-        {searchResults.items.map((item) => (
+        {searchResults.items.slice(0, 4).map((item) => (
           <ItemProduct
             key={item.id}
             picture={item.picture}
