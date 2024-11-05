@@ -1,0 +1,41 @@
+.item-container {
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  background: #FEFEFE;
+  .img-container {
+    height: 160px;
+    width: 160px;
+  
+    img {
+      border-radius: inherit;
+      object-fit: contain;
+      object-position: center;
+      width: 100%;
+    }
+  }
+  .item-info-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .item-info {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-top: 10px;
+      p {
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+      h2 {
+        font-size: 1.2em;
+        font-weight: normal!important;
+        max-width: 400px;
+      }
+    }
+  }
+}
+
+
