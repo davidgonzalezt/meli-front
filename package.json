@@ -1,12 +1,12 @@
 {
-  "name": "meli-frontent",
+  "name": "meli-front",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "test": "jest",
+    "test": "jest --coverage",
     "lint": "eslint .",
     "preview": "vite preview"
   },
