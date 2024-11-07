@@ -11,14 +11,23 @@ import BreadCrumb from "../../components/BreadCrumb";
 const ProductDetail: React.FC = () => {
   const { id = "" } = useParams<{ id: string }>();
   const [product, setProduct] = useState<ProductDetails["item"] | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    (async () => {
+  const fetchProduct = async () => {
+    try {
+      setLoading(true);
       if (!id) return;
       const { item } = await getProductDetails(id);
-
       setProduct(item);
-    })();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!product) fetchProduct()
   }, [id]);
 
   if (!product) return null;
@@ -34,15 +43,21 @@ const ProductDetail: React.FC = () => {
           } y con envío disponible.`}
         />
       </Helmet>
-      <BreadCrumb categories={product.categories} />
-      <Detail
-        {...product}
-        description={
-          <ReactMarkdown rehypePlugins={[rehypeSanitize]}>
-            {product.description}
-          </ReactMarkdown>
-        }
-      />
+      {loading ? (
+        <div className="m-auto">Cargando...</div>
+      ) : (
+        <>
+          <BreadCrumb categories={product.categories} />
+          <Detail
+            {...product}
+            description={
+              <ReactMarkdown rehypePlugins={[rehypeSanitize]}>
+                {product.description}
+              </ReactMarkdown>
+            }
+          />
+        </>
+      )}
     </>
   );
 };

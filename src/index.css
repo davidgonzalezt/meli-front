@@ -17,3 +17,7 @@ body {
   gap: 16px;
   margin: auto;
 }
+
+.m-auto {
+  margin: auto;
+}
