@@ -19,6 +19,7 @@ const ItemProduct: React.FC<ItemProductProps> = ({
   picture,
   price,
   title,
+  free_shipping,
   id,
 }) => {
   const priceAmount = formatCurrency(price.amount, price.currency);
@@ -35,7 +36,10 @@ const ItemProduct: React.FC<ItemProductProps> = ({
       </figure>
       <section className="item-info-container">
         <div className="item-info">
-          <p className="item-price">{priceAmount}</p>
+          <div className="item-price-container">
+            <p className="item-price">{priceAmount}</p>
+            {free_shipping && <span className="free-shipping" />}{" "}
+          </div>
           <h2 className="item-title">{title}</h2>
         </div>
       </section>

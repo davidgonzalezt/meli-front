@@ -41,7 +41,7 @@ const API_URL = import.meta.env.VITE_API_URL;
  * @returns {Promise<SearchProducts>} - A promise that resolves with the search products.
  */
 const getSearchProducts = async (search: string): Promise<SearchProducts> => {
-  const { data } = await axios.get(`${API_URL}/api/items?q=${search}`);
+  const { data } = await axios.get(`${API_URL}/api/items?q=${search}&limit=4`);
   return data;
 };
 

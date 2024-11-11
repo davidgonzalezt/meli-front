@@ -50,7 +50,7 @@ const ResultSearch: React.FC = () => {
         <>
           <BreadCrumb categories={searchResults?.categories} />
           <div className="result-content">
-            {searchResults.items.slice(0, 4).map((item) => (
+            {searchResults.items.map((item) => (
               <ItemProduct
                 key={item.id}
                 picture={item.picture}
